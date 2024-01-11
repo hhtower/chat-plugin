@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '1.16.1'
+}
+
+group = "pub.yufu"
+version = "1.0.0"
+
+repositories {
+    maven { url 'https://maven.aliyun.com/repository/central/'}
+    maven { url 'https://maven.aliyun.com/repository/public/' }
+    maven { url 'https://maven.aliyun.com/repository/google/' }
+    maven { url 'https://maven.aliyun.com/repository/jcenter/'}
+    maven { url 'https://maven.aliyun.com/repository/gradle-plugin'}
+    //    mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+}
+
+intellij {
+    version = '2023.1.5'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['-Xlint:unchecked', '-Xlint:deprecation', '-parameters']
+}
+
+tasks {
+    patchPluginXml {
+        sinceBuild = '231'
+    }
+}
